@@ -27,7 +27,7 @@ public class AddStudent extends javax.swing.JFrame {
        
         initComponents();
  
-//        viewData();
+        viewData();
     }
 
     /**
@@ -487,8 +487,8 @@ public class AddStudent extends javax.swing.JFrame {
             String qry = "SELECT * FROM student_info";
             PreparedStatement pstmnt = conn.prepareStatement(qry);
             ResultSet rslt = pstmnt.executeQuery();
-            System.out.println("DAPAT GUMAGANA"+ this);
-            //      isa-isahin yung data
+            System.out.println("executed");
+          
             while (rslt.next()) {
                 String studno = rslt.getString("StudentNumber");
                 String fname = rslt.getString("FirstName");

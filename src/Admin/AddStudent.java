@@ -17,15 +17,17 @@ import javax.swing.table.DefaultTableModel;
  * @author drewn
  */
 public class AddStudent extends javax.swing.JFrame {
-
     static String db = "jdbc:mysql://localhost:3306/sis";
 
     /**
      * Creates new form AddStudent
+     * @param pw
      */
     public AddStudent() {
+       
         initComponents();
-        viewData();
+ 
+//        viewData();
     }
 
     /**
@@ -269,7 +271,7 @@ public class AddStudent extends javax.swing.JFrame {
                     .addComponent(cbFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbAscDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSort))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(81, 81, 81)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -485,7 +487,7 @@ public class AddStudent extends javax.swing.JFrame {
             String qry = "SELECT * FROM student_info";
             PreparedStatement pstmnt = conn.prepareStatement(qry);
             ResultSet rslt = pstmnt.executeQuery();
-
+            System.out.println("DAPAT GUMAGANA"+ this);
             //      isa-isahin yung data
             while (rslt.next()) {
                 String studno = rslt.getString("StudentNumber");

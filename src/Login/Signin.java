@@ -14,7 +14,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.table.DefaultTableModel;
-
+import Admin.*;
 /**
  *
  * @author drewn
@@ -174,7 +174,9 @@ public class Signin extends javax.swing.JFrame {
     }
 
     void logInAdmin() {
+        Admin.AddStudent stdntform = new Admin.AddStudent();
         try {
+            
             Connection conn = DriverManager.getConnection(db, "root", null);
             String qry = "SELECT * FROM admin_info WHERE Username = ?";
             PreparedStatement pstmnt = conn.prepareStatement(qry);
@@ -187,7 +189,9 @@ public class Signin extends javax.swing.JFrame {
                 if (txtPassword.getText().equals(pw)) {
                     showMessageDialog(null, "Welcome Admin");
                     this.setVisible(false);
-                    new AddStudent().setVisible(true);
+    
+                    stdntform.passData(pw);
+                    stdntform.setVisible(true);
                 } else {
                     showMessageDialog(null, "Wrong Details");
                 }

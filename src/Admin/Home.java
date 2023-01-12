@@ -19,7 +19,7 @@ public class Home extends javax.swing.JFrame {
      */
     public Home() {
         initComponents();
-         openStudentForm();
+        openStudentForm();
     }
 
     /**
@@ -134,10 +134,22 @@ public class Home extends javax.swing.JFrame {
 
     private void btnProgramMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProgramMouseClicked
         // TODO add your handling code here:
+        ProgramIntForm prgForm = new ProgramIntForm();
+
+        dpCurrentForm.removeAll();
+
+        dpCurrentForm.add(prgForm).setVisible(true);
+
+        try {
+            prgForm.setMaximum(true);
+        } catch (PropertyVetoException err) {
+            err.printStackTrace();
+        }
+
     }//GEN-LAST:event_btnProgramMouseClicked
 
     private void btnBatchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBatchMouseClicked
-        // TODO add your handling code here:\
+        // TODO add your handling code here:
         openBatchForm();
     }//GEN-LAST:event_btnBatchMouseClicked
 
@@ -147,8 +159,7 @@ public class Home extends javax.swing.JFrame {
         dpCurrentForm.removeAll();
 
         dpCurrentForm.add(stdntform).setVisible(true);
-        
-        
+
         try {
             stdntform.setMaximum(true);
         } catch (PropertyVetoException err) {
@@ -161,8 +172,8 @@ public class Home extends javax.swing.JFrame {
         BatchForm btchform = new BatchForm();
         dpCurrentForm.removeAll();
         dpCurrentForm.add(btchform).setVisible(true);
-        
-         try {
+
+        try {
             btchform.setMaximum(true);
         } catch (PropertyVetoException err) {
             err.printStackTrace();

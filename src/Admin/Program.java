@@ -4,7 +4,6 @@
  */
 package Admin;
 
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -13,7 +12,7 @@ import java.sql.SQLException;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.table.DefaultTableModel;
 
-/** 
+/**
  *
  * @author drewn
  */
@@ -22,9 +21,9 @@ public class Program extends javax.swing.JFrame {
     /**
      * Creates new form Program
      */
-    
+//    test commit
     static String db = "jdbc:mysql://localhost:3306/sis";
-    
+
     public Program() {
         initComponents();
         viewData();
@@ -288,7 +287,7 @@ public class Program extends javax.swing.JFrame {
         clearTable();
         viewData();
     }//GEN-LAST:event_btnDeleteMouseClicked
-       
+
     /**
      * @param args the command line arguments
      */
@@ -308,7 +307,7 @@ public class Program extends javax.swing.JFrame {
                 String startDate = rslt.getString("StartDate");
                 String endDate = rslt.getString("EndDate");
 
-                String data[] = {programId, programTitle, trainer, batchNo, startDate, endDate };
+                String data[] = {programId, programTitle, trainer, batchNo, startDate, endDate};
                 DefaultTableModel tbl = (DefaultTableModel) tblProgramInfo.getModel();
 
                 tbl.addRow(data);
@@ -317,12 +316,12 @@ public class Program extends javax.swing.JFrame {
             err.printStackTrace();
         }
     }
-    
+
     void clearTable() {
         DefaultTableModel model = (DefaultTableModel) tblProgramInfo.getModel();
         model.setRowCount(0);
     }
-    
+
     void addData() {
         try {
             String qry = "INSERT INTO `program`(`ProgramId`, `ProgramTitle`, `Trainer`, `BatchNumber`, `StartDate`, `EndDate`) "
@@ -336,7 +335,6 @@ public class Program extends javax.swing.JFrame {
             pstmnt.setString(4, txtBtchNum.getText());
             pstmnt.setString(5, txtStart.getText());
             pstmnt.setString(6, txtEnd.getText());
-            
 
             pstmnt.executeUpdate();
             showMessageDialog(this, "Progam Added");
@@ -347,7 +345,7 @@ public class Program extends javax.swing.JFrame {
             err.printStackTrace();
         }
     }
-    
+
     void updateData() {
         try {
             Connection conn = DriverManager.getConnection(db, "root", null);
@@ -372,7 +370,7 @@ public class Program extends javax.swing.JFrame {
             err.printStackTrace();
         }
     }
-    
+
     void deleteData() {
         try {
             Connection conn = DriverManager.getConnection(db, "root", null);
@@ -389,7 +387,7 @@ public class Program extends javax.swing.JFrame {
             err.printStackTrace();
         }
     }
-    
+
     void getRow() {
         DefaultTableModel tbl = (DefaultTableModel) tblProgramInfo.getModel();
         int selectedRowIndex = tblProgramInfo.getSelectedRow();
@@ -401,8 +399,7 @@ public class Program extends javax.swing.JFrame {
         txtStart.setText((tbl.getValueAt(selectedRowIndex, 4)).toString());
         txtEnd.setText((tbl.getValueAt(selectedRowIndex, 5)).toString());
     }
-    
-    
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

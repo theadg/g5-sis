@@ -4,7 +4,16 @@
  */
 package Admin;
 
-/**
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import static javax.swing.JOptionPane.showMessageDialog;
+import javax.swing.table.DefaultTableModel;
+
+/** 
  *
  * @author drewn
  */
@@ -13,8 +22,12 @@ public class Program extends javax.swing.JFrame {
     /**
      * Creates new form Program
      */
+    
+    static String db = "jdbc:mysql://localhost:3306/sis";
+    
     public Program() {
         initComponents();
+        viewData();
     }
 
     /**
@@ -27,46 +40,369 @@ public class Program extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblProgramInfo = new javax.swing.JTable();
+        txtProgID = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        txtProgramTitle = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        txtTrainer = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        txtBtchNum = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txtStart = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        txtEnd = new javax.swing.JTextField();
+        btnUpdate = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblProgramInfo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Program ID", "Program Title", "Trainer", "Batch Number", "Start Date", "End Date"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        tblProgramInfo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblProgramInfoMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblProgramInfo);
+
+        txtProgID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtProgIDActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("ProgramID");
+
+        txtProgramTitle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtProgramTitleActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Progam Title");
+
+        txtTrainer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTrainerActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Trainer");
+
+        txtBtchNum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBtchNumActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Batch Number");
+
+        txtStart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtStartActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("Start Date");
+
+        jLabel6.setText("End Date");
+
+        txtEnd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEndActionPerformed(evt);
+            }
+        });
+
+        btnUpdate.setText("Update Program");
+        btnUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnUpdateMouseClicked(evt);
+            }
+        });
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+
+        btnAdd.setText("Add Program");
+        btnAdd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAddMouseClicked(evt);
+            }
+        });
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+
+        btnDelete.setText("Delete Program");
+        btnDelete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnDeleteMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 864, Short.MAX_VALUE)
-                .addGap(43, 43, 43))
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 899, Short.MAX_VALUE)
+                        .addGap(32, 32, 32))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel1))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtProgramTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                                    .addComponent(txtProgID))
+                                .addGap(40, 40, 40)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtTrainer)
+                                    .addComponent(txtBtchNum, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))
+                                .addGap(59, 59, 59))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(btnAdd)
+                                .addGap(121, 121, 121)
+                                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(116, 116, 116)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtEnd)
+                                    .addComponent(txtStart, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(187, Short.MAX_VALUE))
+                .addGap(101, 101, 101)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtProgID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtTrainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(42, 42, 42)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtProgramTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtBtchNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnUpdate)
+                    .addComponent(btnAdd)
+                    .addComponent(btnDelete))
+                .addGap(58, 58, 58))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtProgIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProgIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtProgIDActionPerformed
+
+    private void txtProgramTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProgramTitleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtProgramTitleActionPerformed
+
+    private void txtTrainerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTrainerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTrainerActionPerformed
+
+    private void txtBtchNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBtchNumActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBtchNumActionPerformed
+
+    private void txtStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStartActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtStartActionPerformed
+
+    private void txtEndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEndActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEndActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
+        // TODO add your handling code here:
+        addData();
+        clearTable();
+        viewData();
+    }//GEN-LAST:event_btnAddMouseClicked
+
+    private void btnUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnUpdateMouseClicked
+
+    private void tblProgramInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProgramInfoMouseClicked
+        // TODO add your handling code here:
+        getRow();
+    }//GEN-LAST:event_tblProgramInfoMouseClicked
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        updateData();
+        clearTable();
+        viewData();
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseClicked
+        // TODO add your handling code here:
+        deleteData();
+        clearTable();
+        viewData();
+    }//GEN-LAST:event_btnDeleteMouseClicked
+       
     /**
      * @param args the command line arguments
      */
+    void viewData() {
+        try {
+            Connection conn = DriverManager.getConnection(db, "root", null);
+            String qry = "SELECT * FROM program";
+            PreparedStatement pstmnt = conn.prepareStatement(qry);
+            ResultSet rslt = pstmnt.executeQuery();
+
+            //      isa-isahin yung data
+            while (rslt.next()) {
+                String programId = rslt.getString("ProgramId");
+                String programTitle = rslt.getString("ProgramTitle");
+                String trainer = rslt.getString("Trainer");
+                String batchNo = rslt.getString("BatchNumber");
+                String startDate = rslt.getString("StartDate");
+                String endDate = rslt.getString("EndDate");
+
+                String data[] = {programId, programTitle, trainer, batchNo, startDate, endDate };
+                DefaultTableModel tbl = (DefaultTableModel) tblProgramInfo.getModel();
+
+                tbl.addRow(data);
+            }
+        } catch (SQLException err) {
+            err.printStackTrace();
+        }
+    }
+    
+    void clearTable() {
+        DefaultTableModel model = (DefaultTableModel) tblProgramInfo.getModel();
+        model.setRowCount(0);
+    }
+    
+    void addData() {
+        try {
+            String qry = "INSERT INTO `program`(`ProgramId`, `ProgramTitle`, `Trainer`, `BatchNumber`, `StartDate`, `EndDate`) "
+                    + "VALUES ( ?,?,?,?,?,?);";
+            Connection conn = DriverManager.getConnection(db, "root", null);
+            PreparedStatement pstmnt = conn.prepareStatement(qry);
+//            pstmnt.setString(1, txtStudentNumber.getText());
+            pstmnt.setString(1, txtProgID.getText());
+            pstmnt.setString(2, txtProgramTitle.getText());
+            pstmnt.setString(3, txtTrainer.getText());
+            pstmnt.setString(4, txtBtchNum.getText());
+            pstmnt.setString(5, txtStart.getText());
+            pstmnt.setString(6, txtEnd.getText());
+            
+
+            pstmnt.executeUpdate();
+            showMessageDialog(this, "Progam Added");
+
+//            cleanUp
+//            
+        } catch (SQLException err) {
+            err.printStackTrace();
+        }
+    }
+    
+    void updateData() {
+        try {
+            Connection conn = DriverManager.getConnection(db, "root", null);
+            String qry = "UPDATE `program` SET `ProgramTitle`=?,`Trainer`=?,"
+                    + "`BatchNumber`=?,`StartDate`=?,`EndDate`=? "
+                    + "WHERE ProgramId = ?";
+            PreparedStatement pstmnt = conn.prepareStatement(qry);
+//            pstmnt.setString(1, txtStudentNumber.getText());
+            pstmnt.setString(1, txtProgramTitle.getText());
+            pstmnt.setString(2, txtTrainer.getText());
+            pstmnt.setString(3, txtBtchNum.getText());
+            pstmnt.setString(4, txtStart.getText());
+            pstmnt.setString(5, txtEnd.getText());
+            pstmnt.setString(6, txtProgID.getText());
+
+            pstmnt.executeUpdate();
+            showMessageDialog(this, "Program Updated");
+
+//            cleanUp
+//            
+        } catch (SQLException err) {
+            err.printStackTrace();
+        }
+    }
+    
+    void deleteData() {
+        try {
+            Connection conn = DriverManager.getConnection(db, "root", null);
+            String qry = "DELETE FROM program WHERE ProgramId = ?";
+            PreparedStatement pstmnt = conn.prepareStatement(qry);
+            pstmnt.setString(1, txtProgID.getText());
+
+            pstmnt.executeUpdate();
+            showMessageDialog(this, "Program Removed");
+
+//            cleanUp
+//            
+        } catch (SQLException err) {
+            err.printStackTrace();
+        }
+    }
+    
+    void getRow() {
+        DefaultTableModel tbl = (DefaultTableModel) tblProgramInfo.getModel();
+        int selectedRowIndex = tblProgramInfo.getSelectedRow();
+
+        txtProgID.setText((tbl.getValueAt(selectedRowIndex, 0)).toString());
+        txtProgramTitle.setText((tbl.getValueAt(selectedRowIndex, 1)).toString());
+        txtTrainer.setText((tbl.getValueAt(selectedRowIndex, 2)).toString());
+        txtBtchNum.setText((tbl.getValueAt(selectedRowIndex, 3)).toString());
+        txtStart.setText((tbl.getValueAt(selectedRowIndex, 4)).toString());
+        txtEnd.setText((tbl.getValueAt(selectedRowIndex, 5)).toString());
+    }
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -81,13 +417,13 @@ public class Program extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Program.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddStudent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Program.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddStudent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Program.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddStudent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Program.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddStudent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -100,7 +436,22 @@ public class Program extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnUpdate;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblProgramInfo;
+    private javax.swing.JTextField txtBtchNum;
+    private javax.swing.JTextField txtEnd;
+    private javax.swing.JTextField txtProgID;
+    private javax.swing.JTextField txtProgramTitle;
+    private javax.swing.JTextField txtStart;
+    private javax.swing.JTextField txtTrainer;
     // End of variables declaration//GEN-END:variables
 }

@@ -16,15 +16,15 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author drewn
  */
-public class Program extends javax.swing.JFrame {
+public class ProgramForm extends javax.swing.JFrame {
 
     /**
-     * Creates new form Program
+     * Creates new form ProgramForm
      */
 //    test commit
     static String db = "jdbc:mysql://localhost:3306/sis";
 
-    public Program() {
+    public ProgramForm() {
         initComponents();
         viewData();
     }
@@ -427,7 +427,7 @@ public class Program extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Program().setVisible(true);
+                new ProgramForm().setVisible(true);
             }
         });
     }

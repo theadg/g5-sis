@@ -5,6 +5,7 @@
 package Login;
 
 import Admin.AddStudent;
+import Student.StudentForm;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -21,7 +22,8 @@ import Admin.*;
 public class Signin extends javax.swing.JFrame {
 
     static String userType = "Admin";
-    static String db = "jdbc:mysql://localhost:3306/sis";
+    //static String db = "jdbc:mysql://localhost:3306/sis";
+    static String db = "jdbc:mysql://localhost:3307/sis";
 
     /**
      * Creates new form Login
@@ -203,18 +205,27 @@ public class Signin extends javax.swing.JFrame {
     }
 
     void logInStudent() {
+        Student.StudentForm studentForm = new Student.StudentForm();
+        Student.EditForm editForm = new Student.EditForm();
         try {
             Connection conn = DriverManager.getConnection(db, "root", null);
             String qry = "SELECT * FROM student_info WHERE StudentNumber = ?";
             PreparedStatement pstmnt = conn.prepareStatement(qry);
             pstmnt.setString(1, txtUser.getText());
+            
             ResultSet rslt = pstmnt.executeQuery();
 
             if (rslt.next()) {
                 String pw = rslt.getString("Pass_word");
-                System.out.println(pw);
+                String usr = txtUser.getText();
                 if (txtPassword.getText().equals(pw)) {
                     showMessageDialog(null, "Welcome User");
+                    studentForm.passData(usr);
+                    studentForm.queryData();
+                    editForm.passData(usr);
+                    editForm.ViewInfo();
+                    this.setVisible(false);
+                    studentForm.setVisible(true);
                 } else {
                     showMessageDialog(null, "Wrong Details");
                 }

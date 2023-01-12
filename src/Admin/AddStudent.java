@@ -17,8 +17,14 @@ import javax.swing.table.DefaultTableModel;
  * @author drewn
  */
 public class AddStudent extends javax.swing.JFrame {
+
+
+    //static String db = "jdbc:mysql://localhost:3306/sis";
+    static String db = "jdbc:mysql://localhost:3307/sis";
+
     static String db = "jdbc:mysql://localhost:3306/sis";
     private String pw;
+
     /**
      * Creates new form AddStudent
      */

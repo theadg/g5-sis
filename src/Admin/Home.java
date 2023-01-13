@@ -21,6 +21,8 @@ public class Home extends javax.swing.JFrame {
     public Home() {
         initComponents();
         openStudentForm();
+        this.setLocationRelativeTo(null);
+
     }
 
     /**
@@ -134,7 +136,7 @@ public class Home extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnApprovalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApprovalActionPerformed
-      ApprovalForm appForm = new ApprovalForm();
+        ApprovalForm appForm = new ApprovalForm();
 
         dpCurrentForm.removeAll();
 
@@ -182,7 +184,7 @@ public class Home extends javax.swing.JFrame {
         Signin signinform = new Signin();
         this.setVisible(false);
         signinform.setVisible(true);
-        
+
     }//GEN-LAST:event_btnLogOutActionPerformed
 
     void openStudentForm() {

@@ -30,6 +30,7 @@ public class Signin extends javax.swing.JFrame {
      */
     public Signin() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

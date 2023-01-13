@@ -28,6 +28,8 @@ public class StudentForm extends javax.swing.JFrame {
      */
     public StudentForm() {
         initComponents();
+        this.setLocationRelativeTo(null);
+
         queryData();
     }
 
@@ -75,7 +77,7 @@ public class StudentForm extends javax.swing.JFrame {
     }
 
     public void passData(String usr) {
-        
+
         userName = usr.toString();
         txtStudentNum.setText(userName);
     }

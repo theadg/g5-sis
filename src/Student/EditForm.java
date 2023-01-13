@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import static javax.swing.JOptionPane.showMessageDialog;
 import Login.*;
+
 /**
  *
  * @author Admin
@@ -26,6 +27,8 @@ public class EditForm extends javax.swing.JFrame {
      */
     public EditForm() {
         initComponents();
+        this.setLocationRelativeTo(null);
+
     }
 
     public void ViewInfo() {

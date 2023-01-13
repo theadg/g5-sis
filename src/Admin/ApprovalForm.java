@@ -13,6 +13,7 @@ import static Admin.Approval.lname;
 import static Admin.Approval.mi;
 import static Admin.Approval.pw;
 import static Admin.Approval.studNo;
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -36,7 +37,8 @@ public class ApprovalForm extends javax.swing.JInternalFrame {
     public ApprovalForm() {
         initComponents();
         viewData();
-                setDefaultRow();
+        setDefaultRow();
+        this.getContentPane().setBackground(new Color(204, 255, 204));
 
     }
 
@@ -53,6 +55,7 @@ public class ApprovalForm extends javax.swing.JInternalFrame {
         tblApproval = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         btnDisapprove = new javax.swing.JButton();
+        jLabel14 = new javax.swing.JLabel();
 
         tblApproval.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -69,6 +72,8 @@ public class ApprovalForm extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tblApproval);
 
+        jButton1.setBackground(new java.awt.Color(102, 255, 102));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jButton1.setText("Approve");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,6 +81,8 @@ public class ApprovalForm extends javax.swing.JInternalFrame {
             }
         });
 
+        btnDisapprove.setBackground(new java.awt.Color(102, 255, 102));
+        btnDisapprove.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btnDisapprove.setText("Disapprove");
         btnDisapprove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,32 +90,39 @@ public class ApprovalForm extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jLabel14.setText("CHANGE REQUESTS");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 920, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(405, 405, 405)
                         .addComponent(btnDisapprove, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(172, 172, 172)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(220, 220, 220))))
+                        .addGap(117, 117, 117)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel14)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1253, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(524, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(57, 57, 57)
+                .addGap(62, 62, 62)
+                .addComponent(jLabel14)
+                .addGap(40, 40, 40)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(113, 113, 113)
+                .addGap(70, 70, 70)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDisapprove, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(133, Short.MAX_VALUE))
+                    .addComponent(btnDisapprove, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
 
         pack();
@@ -119,6 +133,10 @@ public class ApprovalForm extends javax.swing.JInternalFrame {
         disapprove();
         clearTable();
         viewData();
+
+        setDefaultRow();
+
+        getRow();
     }//GEN-LAST:event_btnDisapproveActionPerformed
 
     private void tblApprovalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblApprovalMouseClicked
@@ -288,6 +306,7 @@ public class ApprovalForm extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDisapprove;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblApproval;
     // End of variables declaration//GEN-END:variables

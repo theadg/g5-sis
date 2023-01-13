@@ -11,21 +11,23 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import static javax.swing.JOptionPane.showMessageDialog;
 import Login.*;
+import java.awt.Color;
 
 /**
  *
  * @author Admin
  */
 public class EditForm extends javax.swing.JFrame {
-
-    static String db = "jdbc:mysql://localhost:3306/sis";
-//    static String db = "jdbc:mysql://localhost:3307/sis";
+    
+    //static String db = "jdbc:mysql://localhost:3306/sis";
+    static String db = "jdbc:mysql://localhost:3307/sis";
     static private String userName;
 
     /**
      * Creates new form EditForm
      */
     public EditForm() {
+        this.getContentPane().setBackground(new Color(0, 51, 51));
         initComponents();
         this.setLocationRelativeTo(null);
 
@@ -97,8 +99,10 @@ public class EditForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Student Number");
 
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Middle Initial");
 
         txtStudentNumber.addActionListener(new java.awt.event.ActionListener() {
@@ -113,8 +117,10 @@ public class EditForm extends javax.swing.JFrame {
             }
         });
 
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Last Name");
 
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Address");
 
         txtLastName.addActionListener(new java.awt.event.ActionListener() {
@@ -129,8 +135,10 @@ public class EditForm extends javax.swing.JFrame {
             }
         });
 
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Email");
 
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Password");
 
         txtEmail.addActionListener(new java.awt.event.ActionListener() {
@@ -145,6 +153,7 @@ public class EditForm extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(153, 255, 153));
         jButton1.setText("Request Edit");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,7 +161,8 @@ public class EditForm extends javax.swing.JFrame {
             }
         });
 
-        btnLogOut.setText("Log Out");
+        btnLogOut.setBackground(new java.awt.Color(153, 255, 153));
+        btnLogOut.setText("Cancel");
         btnLogOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLogOutActionPerformed(evt);
@@ -164,12 +174,12 @@ public class EditForm extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(117, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addContainerGap(106, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtStudentNumber)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtMiddleInitial)
@@ -179,9 +189,9 @@ public class EditForm extends javax.swing.JFrame {
                             .addComponent(txtLastName)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtAddress)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -275,7 +285,8 @@ public class EditForm extends javax.swing.JFrame {
             StudentForm studentForm = new StudentForm();
             try {
                 Connection conn = DriverManager.getConnection(db, "root", null);
-                String qry = "INSERT INTO `approval`(`ApprovalId`, `StudentNumber`, `MiddleInitial`, `LastName`, `Address`, `Email`, `Pass_word`) VALUES (null,?,?,?,?,?,?)";
+               // String qry = "INSERT INTO `approval`(`ApprovalId`, `StudentNumber`, `MiddleInitial`, `LastName`, `Address`, `Email`, `Pass_word`) VALUES (null,?,?,?,?,?,?)";
+                String qry = "INSERT INTO `approval`(`ApprovalId`, `StudentNumber`, `MiddleInitial`, `LastName`, `Address`, `MobileNumber`, `Pass_word`) VALUES (null,?,?,?,?,?,?)";
                 PreparedStatement psrmnt = conn.prepareStatement(qry);
                 psrmnt.setString(1, userName);
 
@@ -299,9 +310,9 @@ public class EditForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
-        Signin signinform = new Signin();
+        StudentForm studentForm = new StudentForm();
         this.setVisible(false);
-        signinform.setVisible(true);
+        studentForm.setVisible(true);
 
     }//GEN-LAST:event_btnLogOutActionPerformed
 

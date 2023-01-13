@@ -22,8 +22,8 @@ import Admin.*;
 public class Signin extends javax.swing.JFrame {
 
     static String userType = "Admin";
-    static String db = "jdbc:mysql://localhost:3306/sis";
-//    static String db = "jdbc:mysql://localhost:3307/sis";
+   // static String db = "jdbc:mysql://localhost:3306/sis";
+    static String db = "jdbc:mysql://localhost:3307/sis";
 
     /**
      * Creates new form Login

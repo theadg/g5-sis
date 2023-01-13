@@ -22,8 +22,8 @@ import Admin.*;
 public class Signin extends javax.swing.JFrame {
 
     static String userType = "Admin";
-    //static String db = "jdbc:mysql://localhost:3306/sis";
-    static String db = "jdbc:mysql://localhost:3307/sis";
+    static String db = "jdbc:mysql://localhost:3306/sis";
+//    static String db = "jdbc:mysql://localhost:3307/sis";
 
     /**
      * Creates new form Login
@@ -41,12 +41,24 @@ public class Signin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         cbUserType = new javax.swing.JComboBox<>();
         txtUser = new javax.swing.JTextField();
         txtPassword = new javax.swing.JTextField();
         lblUser = new javax.swing.JLabel();
         lblUser1 = new javax.swing.JLabel();
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,7 +74,7 @@ public class Signin extends javax.swing.JFrame {
             }
         });
 
-        cbUserType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Student", " " }));
+        cbUserType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Student" }));
         cbUserType.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbUserTypeItemStateChanged(evt);
@@ -95,33 +107,33 @@ public class Signin extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(91, 91, 91)
+                .addGap(281, 281, 281)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblUser)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(cbUserType, 0, 140, Short.MAX_VALUE)
+                        .addComponent(cbUserType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtUser)
-                        .addComponent(lblUser1)
-                        .addComponent(txtPassword)))
-                .addContainerGap(98, Short.MAX_VALUE))
+                        .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblUser1)))
+                .addContainerGap(295, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(45, 45, 45)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(165, 165, 165)
                 .addComponent(cbUserType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(lblUser)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGap(56, 56, 56)
                 .addComponent(lblUser1)
-                .addGap(5, 5, 5)
+                .addGap(18, 18, 18)
                 .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(50, 50, 50)
                 .addComponent(jButton1)
-                .addGap(34, 34, 34))
+                .addContainerGap(170, Short.MAX_VALUE))
         );
 
         pack();
@@ -174,7 +186,7 @@ public class Signin extends javax.swing.JFrame {
     }
 
     void logInAdmin() {
-        Admin.AddStudent stdntform = new Admin.AddStudent();
+        Admin.Home home = new Admin.Home();
         try {
             
             Connection conn = DriverManager.getConnection(db, "root", null);
@@ -190,8 +202,7 @@ public class Signin extends javax.swing.JFrame {
                     showMessageDialog(null, "Welcome Admin");
                     this.setVisible(false);
     
-                    stdntform.passData(pw);
-                    stdntform.setVisible(true);
+                    home.setVisible(true);
                 } else {
                     showMessageDialog(null, "Wrong Details");
                 }
@@ -277,6 +288,7 @@ public class Signin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbUserType;
     private javax.swing.JButton jButton1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblUser;
     private javax.swing.JLabel lblUser1;
     private javax.swing.JTextField txtPassword;

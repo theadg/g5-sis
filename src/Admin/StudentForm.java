@@ -25,6 +25,7 @@ public class StudentForm extends javax.swing.JInternalFrame {
     public StudentForm() {
         initComponents();
         viewData();
+        setDefaultRow();
     }
 
     /**
@@ -328,6 +329,15 @@ public class StudentForm extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+      void setDefaultRow() {
+        DefaultTableModel tbl = (DefaultTableModel) tblStudentInfo.getModel();
+        if (tblStudentInfo.getRowCount() > 0) {
+            tblStudentInfo.setRowSelectionInterval(0, 0);
+            getRow();
+        }
+
+    }
+      
     void sortData() {
 
         String fieldName = cbFieldName.getSelectedItem().toString();

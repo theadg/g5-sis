@@ -26,6 +26,7 @@ public class ProgramIntForm extends javax.swing.JInternalFrame {
         initComponents();
         System.out.println("Gumagana ako ih");
         viewData();
+        setDefaultRow();
     }
 
     /**
@@ -239,9 +240,15 @@ public class ProgramIntForm extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnUpdateMouseClicked
 
-        /**
-     * @param args the command line arguments
-     */
+    void setDefaultRow() {
+        DefaultTableModel tbl = (DefaultTableModel) tblProgramInfo.getModel();
+        if (tblProgramInfo.getRowCount() > 0) {
+            tblProgramInfo.setRowSelectionInterval(0, 0);
+            getRow();
+        }
+
+    }
+
     void viewData() {
         try {
             Connection conn = DriverManager.getConnection(db, "root", null);
@@ -274,52 +281,58 @@ public class ProgramIntForm extends javax.swing.JInternalFrame {
     }
 
     void addData() {
-        try {
-            String qry = "INSERT INTO `program`(`ProgramId`, `ProgramTitle`, `Trainer`, `BatchNumber`, `StartDate`, `EndDate`) "
-                    + "VALUES ( ?,?,?,?,?,?);";
-            Connection conn = DriverManager.getConnection(db, "root", null);
-            PreparedStatement pstmnt = conn.prepareStatement(qry);
-//            pstmnt.setString(1, txtStudentNumber.getText());
-            pstmnt.setString(1, txtProgID.getText());
-            pstmnt.setString(2, txtProgramTitle.getText());
-            pstmnt.setString(3, txtTrainer.getText());
-            pstmnt.setString(4, txtBtchNum.getText());
-            pstmnt.setString(5, txtStart.getText());
-            pstmnt.setString(6, txtEnd.getText());
+        if (txtProgramTitle.getText().equals("") || txtTrainer.getText().equals("")
+                || txtBtchNum.getText().equals("") || txtStart.getText().equals("") || txtEnd.getText().equals("")) {
+            showMessageDialog(this, "Incomplete Details");
+        } else {
+            try {
+                String qry = "INSERT INTO `program`(`ProgramId`, `ProgramTitle`, `Trainer`, `BatchNumber`, `StartDate`, `EndDate`) "
+                        + "VALUES ( ?,?,?,?,?,?);";
+                Connection conn = DriverManager.getConnection(db, "root", null);
+                PreparedStatement pstmnt = conn.prepareStatement(qry);
+                pstmnt.setString(1, txtProgID.getText());
+                pstmnt.setString(2, txtProgramTitle.getText());
+                pstmnt.setString(3, txtTrainer.getText());
+                pstmnt.setString(4, txtBtchNum.getText());
+                pstmnt.setString(5, txtStart.getText());
+                pstmnt.setString(6, txtEnd.getText());
 
-            pstmnt.executeUpdate();
-            showMessageDialog(this, "Progam Added");
+                pstmnt.executeUpdate();
+                showMessageDialog(this, "Progam Added");
 
-//            cleanUp
-//            
-        } catch (SQLException err) {
-            err.printStackTrace();
+            } catch (SQLException err) {
+                err.printStackTrace();
+            }
         }
+
     }
 
     void updateData() {
-        try {
-            Connection conn = DriverManager.getConnection(db, "root", null);
-            String qry = "UPDATE `program` SET `ProgramTitle`=?,`Trainer`=?,"
-                    + "`BatchNumber`=?,`StartDate`=?,`EndDate`=? "
-                    + "WHERE ProgramId = ?";
-            PreparedStatement pstmnt = conn.prepareStatement(qry);
-//            pstmnt.setString(1, txtStudentNumber.getText());
-            pstmnt.setString(1, txtProgramTitle.getText());
-            pstmnt.setString(2, txtTrainer.getText());
-            pstmnt.setString(3, txtBtchNum.getText());
-            pstmnt.setString(4, txtStart.getText());
-            pstmnt.setString(5, txtEnd.getText());
-            pstmnt.setString(6, txtProgID.getText());
+        if (txtProgramTitle.getText().equals("") || txtTrainer.getText().equals("")
+                || txtBtchNum.getText().equals("") || txtStart.getText().equals("") || txtEnd.getText().equals("")) {
+            showMessageDialog(this, "Incomplete Details");
+        } else {
+            try {
+                Connection conn = DriverManager.getConnection(db, "root", null);
+                String qry = "UPDATE `program` SET `ProgramTitle`=?,`Trainer`=?,"
+                        + "`BatchNumber`=?,`StartDate`=?,`EndDate`=? "
+                        + "WHERE ProgramId = ?";
+                PreparedStatement pstmnt = conn.prepareStatement(qry);
+                pstmnt.setString(1, txtProgramTitle.getText());
+                pstmnt.setString(2, txtTrainer.getText());
+                pstmnt.setString(3, txtBtchNum.getText());
+                pstmnt.setString(4, txtStart.getText());
+                pstmnt.setString(5, txtEnd.getText());
+                pstmnt.setString(6, txtProgID.getText());
 
-            pstmnt.executeUpdate();
-            showMessageDialog(this, "Program Updated");
+                pstmnt.executeUpdate();
+                showMessageDialog(this, "Program Updated");
 
-//            cleanUp
-//            
-        } catch (SQLException err) {
-            err.printStackTrace();
+            } catch (SQLException err) {
+                err.printStackTrace();
+            }
         }
+
     }
 
     void deleteData() {
@@ -332,8 +345,6 @@ public class ProgramIntForm extends javax.swing.JInternalFrame {
             pstmnt.executeUpdate();
             showMessageDialog(this, "Program Removed");
 
-//            cleanUp
-//            
         } catch (SQLException err) {
             err.printStackTrace();
         }
@@ -357,7 +368,7 @@ public class ProgramIntForm extends javax.swing.JInternalFrame {
         viewData();
     }//GEN-LAST:event_btnUpdateActionPerformed
 
-    
+
     private void txtProgramTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProgramTitleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtProgramTitleActionPerformed

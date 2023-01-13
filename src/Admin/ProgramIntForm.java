@@ -5,6 +5,8 @@
 package Admin;
 
 import static Admin.ProgramForm.db;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -24,9 +26,10 @@ public class ProgramIntForm extends javax.swing.JInternalFrame {
      */
     public ProgramIntForm() {
         initComponents();
-        System.out.println("Gumagana ako ih");
         viewData();
         setDefaultRow();
+        this.getContentPane().setBackground(new Color(204, 255, 204));
+        this.setPreferredSize(new Dimension(1393, 876));
     }
 
     /**
@@ -55,22 +58,37 @@ public class ProgramIntForm extends javax.swing.JInternalFrame {
         tblProgramInfo = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        cbAscDesc = new javax.swing.JComboBox<>();
+        cbFieldName = new javax.swing.JComboBox<>();
+        btnSort = new javax.swing.JButton();
 
+        setMinimumSize(new java.awt.Dimension(1400, 875));
+        setPreferredSize(new java.awt.Dimension(1400, 876));
+
+        txtProgID.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtProgID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtProgIDActionPerformed(evt);
             }
         });
 
+        txtEnd.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtEnd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEndActionPerformed(evt);
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("ProgramID");
 
+        btnUpdate.setBackground(new java.awt.Color(102, 255, 102));
+        btnUpdate.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnUpdate.setText("Update Program");
+        btnUpdate.setMaximumSize(new java.awt.Dimension(131, 31));
+        btnUpdate.setMinimumSize(new java.awt.Dimension(131, 31));
         btnUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnUpdateMouseClicked(evt);
@@ -82,13 +100,18 @@ public class ProgramIntForm extends javax.swing.JInternalFrame {
             }
         });
 
+        txtProgramTitle.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtProgramTitle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtProgramTitleActionPerformed(evt);
             }
         });
 
+        btnAdd.setBackground(new java.awt.Color(102, 255, 102));
+        btnAdd.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnAdd.setText("Add Program");
+        btnAdd.setMaximumSize(new java.awt.Dimension(131, 31));
+        btnAdd.setMinimumSize(new java.awt.Dimension(131, 31));
         btnAdd.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAddMouseClicked(evt);
@@ -100,31 +123,42 @@ public class ProgramIntForm extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("Progam Title");
 
+        btnDelete.setBackground(new java.awt.Color(102, 255, 102));
+        btnDelete.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnDelete.setText("Delete Program");
+        btnDelete.setMaximumSize(new java.awt.Dimension(131, 31));
+        btnDelete.setMinimumSize(new java.awt.Dimension(131, 31));
+        btnDelete.setPreferredSize(new java.awt.Dimension(131, 31));
         btnDelete.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnDeleteMouseClicked(evt);
             }
         });
 
+        txtTrainer.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtTrainer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTrainerActionPerformed(evt);
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Trainer");
 
+        txtBtchNum.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtBtchNum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtBtchNumActionPerformed(evt);
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel4.setText("Batch Number");
 
+        txtStart.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtStart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtStartActionPerformed(evt);
@@ -146,9 +180,42 @@ public class ProgramIntForm extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tblProgramInfo);
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setText("Start Date");
 
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel6.setText("End Date");
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jLabel14.setText("PROGRAM LIST");
+
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel13.setText("PROGRAM INFORMATION");
+
+        cbAscDesc.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cbAscDesc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ASC", "DESC" }));
+        cbAscDesc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbAscDescActionPerformed(evt);
+            }
+        });
+
+        cbFieldName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cbFieldName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ProgramId", "ProgramTitle", "Trainer", "BatchNumber", "StartDate", "EndDate" }));
+
+        btnSort.setBackground(new java.awt.Color(102, 255, 102));
+        btnSort.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnSort.setText("Sort");
+        btnSort.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSortMouseClicked(evt);
+            }
+        });
+        btnSort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSortActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -158,9 +225,24 @@ public class ProgramIntForm extends javax.swing.JInternalFrame {
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 929, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1)
                         .addGap(32, 32, 32))
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cbFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(cbAscDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSort, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40))))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addComponent(jLabel13))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(146, 146, 146)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,8 +250,8 @@ public class ProgramIntForm extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel1))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtProgramTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
-                                    .addComponent(txtProgID))
+                                    .addComponent(txtProgramTitle)
+                                    .addComponent(txtProgID, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(40, 40, 40)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel4)
@@ -177,31 +259,37 @@ public class ProgramIntForm extends javax.swing.JInternalFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtTrainer)
-                                    .addComponent(txtBtchNum, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))
-                                .addGap(59, 59, 59))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btnAdd)
-                                .addGap(121, 121, 121)
-                                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(116, 116, 116)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
+                                    .addComponent(txtBtchNum, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(59, 59, 59)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5)
                                     .addComponent(jLabel6))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtEnd)
-                                    .addComponent(txtStart, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(txtStart, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(121, 121, 121)
+                                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(116, 116, 116)
+                                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(0, 165, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(101, 101, 101)
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(cbFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbAscDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSort))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
+                .addGap(40, 40, 40)
+                .addComponent(jLabel13)
+                .addGap(79, 79, 79)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtProgID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
@@ -217,12 +305,12 @@ public class ProgramIntForm extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4)
                     .addComponent(txtEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnUpdate)
-                    .addComponent(btnAdd)
-                    .addComponent(btnDelete))
-                .addGap(58, 58, 58))
+                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46))
         );
 
         pack();
@@ -249,6 +337,34 @@ public class ProgramIntForm extends javax.swing.JInternalFrame {
 
     }
 
+     void sortData() {
+
+        String fieldName = cbFieldName.getSelectedItem().toString();
+        String order = cbAscDesc.getSelectedItem().toString();
+        try {
+            Connection conn = DriverManager.getConnection(db, "root", null);
+            String qry = "SELECT * FROM program ORDER BY " + fieldName + " " + order;
+            PreparedStatement pstmnt = conn.prepareStatement(qry);
+
+            ResultSet rslt = pstmnt.executeQuery();
+            while (rslt.next()) {
+                String pId = rslt.getString("ProgramId");
+                String pTitle = rslt.getString("ProgramTitle");
+                String trainer = rslt.getString("Trainer");
+                String bNo = rslt.getString("BatchNumber");
+                String sD = rslt.getString("StartDate");
+                String Ed = rslt.getString("EndDate");
+               
+                String data[] = {pId, pTitle, trainer, bNo, sD, Ed};
+                DefaultTableModel tbl = (DefaultTableModel) tblProgramInfo.getModel();
+
+                tbl.addRow(data);
+            }
+        } catch (SQLException err) {
+            err.printStackTrace();
+        }
+
+    }
     void viewData() {
         try {
             Connection conn = DriverManager.getConnection(db, "root", null);
@@ -408,6 +524,19 @@ public class ProgramIntForm extends javax.swing.JInternalFrame {
         getRow();
     }//GEN-LAST:event_tblProgramInfoMouseClicked
 
+    private void cbAscDescActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAscDescActionPerformed
+         
+    }//GEN-LAST:event_cbAscDescActionPerformed
+
+    private void btnSortMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSortMouseClicked
+        clearTable();
+        sortData();
+    }//GEN-LAST:event_btnSortMouseClicked
+
+    private void btnSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSortActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSortActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -443,8 +572,13 @@ public class ProgramIntForm extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnSort;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JComboBox<String> cbAscDesc;
+    private javax.swing.JComboBox<String> cbFieldName;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

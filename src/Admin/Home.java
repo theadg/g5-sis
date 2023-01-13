@@ -5,6 +5,7 @@
 package Admin;
 
 import Login.Signin;
+import java.awt.Color;
 import java.beans.PropertyVetoException;
 
 /**
@@ -22,7 +23,7 @@ public class Home extends javax.swing.JFrame {
         initComponents();
         openStudentForm();
         this.setLocationRelativeTo(null);
-
+        this.getContentPane().setBackground(new Color(0, 51, 51));
     }
 
     /**
@@ -35,14 +36,17 @@ public class Home extends javax.swing.JFrame {
     private void initComponents() {
 
         btnApproval = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnStudent = new javax.swing.JButton();
         btnProgram = new javax.swing.JButton();
         btnBatch = new javax.swing.JButton();
         dpCurrentForm = new javax.swing.JDesktopPane();
         btnLogOut = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Admin Home ");
+        setBackground(new java.awt.Color(102, 204, 0));
 
+        btnApproval.setBackground(new java.awt.Color(153, 255, 153));
         btnApproval.setText("Approval Request");
         btnApproval.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -50,13 +54,15 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Student Form");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnStudent.setBackground(new java.awt.Color(0, 204, 51));
+        btnStudent.setText("Student Form");
+        btnStudent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                btnStudentMouseClicked(evt);
             }
         });
 
+        btnProgram.setBackground(new java.awt.Color(153, 255, 153));
         btnProgram.setText("Program Form");
         btnProgram.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -69,6 +75,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        btnBatch.setBackground(new java.awt.Color(153, 255, 153));
         btnBatch.setText("Batch Form");
         btnBatch.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -76,17 +83,21 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        dpCurrentForm.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        dpCurrentForm.setPreferredSize(new java.awt.Dimension(1393, 876));
+
         javax.swing.GroupLayout dpCurrentFormLayout = new javax.swing.GroupLayout(dpCurrentForm);
         dpCurrentForm.setLayout(dpCurrentFormLayout);
         dpCurrentFormLayout.setHorizontalGroup(
             dpCurrentFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1391, Short.MAX_VALUE)
+            .addGap(0, 1389, Short.MAX_VALUE)
         );
         dpCurrentFormLayout.setVerticalGroup(
             dpCurrentFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 721, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        btnLogOut.setBackground(new java.awt.Color(0, 102, 0));
         btnLogOut.setText("Log Out");
         btnLogOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,35 +110,31 @@ public class Home extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(105, Short.MAX_VALUE)
+                .addContainerGap(61, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnProgram, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnStudent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBatch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnApproval, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLogOut, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
-                .addComponent(dpCurrentForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56))
+                .addGap(40, 40, 40)
+                .addComponent(dpCurrentForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(228, 228, 228)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
+                .addContainerGap(240, Short.MAX_VALUE)
+                .addComponent(btnStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
                 .addComponent(btnProgram, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
+                .addGap(51, 51, 51)
                 .addComponent(btnBatch, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49)
                 .addComponent(btnApproval, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(134, 134, 134)
                 .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(115, 115, 115))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(110, Short.MAX_VALUE)
-                .addComponent(dpCurrentForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44))
+                .addGap(89, 89, 89))
+            .addComponent(dpCurrentForm, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 875, Short.MAX_VALUE)
         );
 
         pack();
@@ -146,16 +153,25 @@ public class Home extends javax.swing.JFrame {
             err.printStackTrace();
         }
 
+        btnStudent.setBackground(new Color(153, 255, 153));
+        btnApproval.setBackground(new Color(0, 204, 51));
+        btnBatch.setBackground(new Color(153, 255, 153));
+        btnProgram.setBackground(new Color(153, 255, 153));
     }//GEN-LAST:event_btnApprovalActionPerformed
 
     private void btnProgramActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProgramActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnProgramActionPerformed
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+    private void btnStudentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStudentMouseClicked
         // TODO add your handling code here:
         openStudentForm();
-    }//GEN-LAST:event_jButton2MouseClicked
+
+        btnStudent.setBackground(new Color(0, 204, 51));
+        btnApproval.setBackground(new Color(153, 255, 153));
+        btnBatch.setBackground(new Color(153, 255, 153));
+        btnProgram.setBackground(new Color(153, 255, 153));
+    }//GEN-LAST:event_btnStudentMouseClicked
 
     private void btnProgramMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProgramMouseClicked
         // TODO add your handling code here:
@@ -171,11 +187,20 @@ public class Home extends javax.swing.JFrame {
             err.printStackTrace();
         }
 
+         btnStudent.setBackground(new Color(153, 255, 153));
+        btnApproval.setBackground(new Color(153, 255, 153));
+        btnBatch.setBackground(new Color(153, 255, 153));
+        btnProgram.setBackground(new Color(0, 204, 51));
     }//GEN-LAST:event_btnProgramMouseClicked
 
     private void btnBatchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBatchMouseClicked
         // TODO add your handling code here:
         openBatchForm();
+
+        btnStudent.setBackground(new Color(153, 255, 153));
+        btnApproval.setBackground(new Color(153, 255, 153));
+        btnBatch.setBackground(new Color(0, 204, 51));
+        btnProgram.setBackground(new Color(153, 255, 153));
     }//GEN-LAST:event_btnBatchMouseClicked
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
@@ -252,7 +277,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton btnBatch;
     private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnProgram;
+    private javax.swing.JButton btnStudent;
     private javax.swing.JDesktopPane dpCurrentForm;
-    private javax.swing.JButton jButton2;
     // End of variables declaration//GEN-END:variables
 }

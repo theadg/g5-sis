@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import Login.Signin;
 import javax.swing.JOptionPane;
 import Student.EditForm;
+import java.awt.Color;
 
 /**
  *
@@ -19,14 +20,15 @@ import Student.EditForm;
  */
 public class StudentForm extends javax.swing.JFrame {
 
-    static String db = "jdbc:mysql://localhost:3306/sis";
-//    static String db = "jdbc:mysql://localhost:3307/sis";
+    //static String db = "jdbc:mysql://localhost:3306/sis";
+    static String db = "jdbc:mysql://localhost:3307/sis";
     static private String userName;
 
     /**
      * Creates new form Student
      */
     public StudentForm() {
+        this.getContentPane().setBackground(new Color(204, 255, 204));
         initComponents();
         this.setLocationRelativeTo(null);
 
@@ -112,6 +114,7 @@ public class StudentForm extends javax.swing.JFrame {
         txtRequirementStatus = new javax.swing.JLabel();
         txtGrade = new javax.swing.JLabel();
         txtProgram = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -135,6 +138,7 @@ public class StudentForm extends javax.swing.JFrame {
 
         jLabel12.setText("Program Title");
 
+        jButton1.setBackground(new java.awt.Color(153, 255, 153));
         jButton1.setText("Edit Info");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -161,6 +165,14 @@ public class StudentForm extends javax.swing.JFrame {
         txtGrade.setText("info");
 
         txtProgram.setText("jLabel5");
+
+        jButton2.setBackground(new java.awt.Color(0, 102, 0));
+        jButton2.setText("Logout");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -213,8 +225,10 @@ public class StudentForm extends javax.swing.JFrame {
                         .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(127, 127, 127))
+                .addGap(77, 77, 77))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,7 +272,9 @@ public class StudentForm extends javax.swing.JFrame {
                         .addGap(24, 24, 24)
                         .addComponent(jLabel9)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18))
         );
 
@@ -274,6 +290,14 @@ public class StudentForm extends javax.swing.JFrame {
         this.setVisible(false);
         editForm.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        Login.Signin logIn = new Login.Signin();
+        StudentForm studentForm = new StudentForm();
+        this.setVisible(false);
+        logIn.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -312,6 +336,7 @@ public class StudentForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
